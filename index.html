@@ -1,187 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Resume</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<title>Download Certificate</title>
 
-    body{
-      font-family:'Segoe UI',sans-serif;
-      background:#0f172a;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-    }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .container{
-      background:#1e293b;
-      padding:2.5rem;
-      border-radius:16px;
-      text-align:center;
-      max-width:400px;
-      width:90%;
-      box-shadow:0 10px 30px rgba(0,0,0,.3);
-    }
+body{
+font-family:'Segoe UI',sans-serif;
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
 
-    .doc-icon{
-      width:100px;
-      height:100px;
-      background:linear-gradient(135deg,#3b82f6,#1d4ed8);
-      border-radius:20px;
-      margin:0 auto 1.5rem;
+.container{
+background:#1e293b;
+padding:2.5rem;
+border-radius:16px;
+text-align:center;
+max-width:400px;
+width:90%;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
 
-      display:flex;
-      align-items:center;
-      justify-content:center;
+.doc-icon{
+width:100px;
+height:100px;
+background:linear-gradient(135deg,#3b82f6,#1d4ed8);
+border-radius:20px;
+margin:0 auto 1.5rem;
 
-      font-size:3rem;
-    }
+display:flex;
+align-items:center;
+justify-content:center;
 
-    h1{
-      font-size:1.8rem;
-      margin-bottom:.5rem;
-    }
+font-size:3rem;
+}
 
-    .subtitle{
-      color:#94a3b8;
-      margin-bottom:1.5rem;
-      font-size:.9rem;
-    }
+h1{
+font-size:1.8rem;
+margin-bottom:.5rem;
+}
 
-    .download-btn{
-      background:#3b82f6;
-      color:white;
+.subtitle{
+color:#94a3b8;
+margin-bottom:1.5rem;
+font-size:.9rem;
+}
 
-      padding:1rem 2rem;
-      border:none;
-      border-radius:10px;
+.download-btn{
+background:#3b82f6;
+color:white;
 
-      font-size:1.1rem;
-      font-weight:bold;
+padding:1rem 2rem;
+border:none;
+border-radius:10px;
 
-      cursor:pointer;
-      width:100%;
+font-size:1.1rem;
+font-weight:bold;
 
-      transition:.3s;
-    }
+cursor:pointer;
+width:100%;
+transition:.3s;
+}
 
-    .download-btn:hover{
-      background:#2563eb;
-      transform:translateY(-2px);
-    }
+.download-btn:hover{
+background:#2563eb;
+transform:translateY(-2px);
+}
 
-    .size{
-      color:#94a3b8;
-      margin-top:1rem;
-      font-size:.85rem;
-    }
-  </style>
+.size{
+color:#94a3b8;
+margin-top:1rem;
+font-size:.85rem;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <div class="doc-icon">📄</div>
+<div class="doc-icon">🏆</div>
 
-  <h1>My Resume</h1>
+<h1>My Certificate</h1>
 
-  <p class="subtitle">
-    Ved Prakash | Web Development CV
-  </p>
+<p class="subtitle">
+Web Development Certificate
+</p>
 
-  <button
-    class="download-btn"
-    onclick="downloadResume()"
-  >
-    ⬇️ Download Web-Development.pdf
-  </button>
+<button
+class="download-btn"
+onclick="downloadCertificate()"
+>
+⬇️ Download Web-Development.pdf
+</button>
 
-  <p
-    class="size"
-    id="fileSize"
-  >
-    Size: Loading...
-  </p>
+<p class="size" id="fileSize">
+Size: Loading...
+</p>
 
 </div>
 
 <script>
 
-const resumeUrl =
+const fileUrl =
 "https://raw.githubusercontent.com/Vedprakash3/Web-Development.io/refs/heads/main/Web-Development.pdf";
 
-const resumeFileName =
+const fileName =
 "Web-Development.pdf";
 
-
-fetch(
-  resumeUrl,
-  { method:"HEAD" }
-)
-
+fetch(fileUrl,{method:"HEAD"})
 .then(res=>{
 
 const size =
 res.headers.get("content-length");
 
-if(size){
-
-document.getElementById(
-"fileSize"
-).innerText =
-`Size: ${(size/1024/1024).toFixed(2)} MB`;
-
-}
-else{
-
-document.getElementById(
-"fileSize"
-).innerText =
-"Size: Unknown";
-
-}
+document.getElementById("fileSize")
+.innerText =
+size
+? `Size: ${(size/1024/1024).toFixed(2)} MB`
+: "Size: Unknown";
 
 })
-
 .catch(()=>{
 
-document.getElementById(
-"fileSize"
-).innerText =
-"Size: Unknown";
+document.getElementById("fileSize")
+.innerText="Size: Unknown";
 
 });
 
-
-function downloadResume(){
+function downloadCertificate(){
 
 const link =
 document.createElement("a");
 
-link.href =
-resumeUrl;
+link.href=fileUrl;
+link.download=fileName;
 
-link.download =
-resumeFileName;
-
-document.body.appendChild(
-link
-);
+document.body.appendChild(link);
 
 link.click();
 
-document.body.removeChild(
-link);
+document.body.removeChild(link);
 
 }
 
