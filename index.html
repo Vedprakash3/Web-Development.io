@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Resume</title>
+  <title>Download Certificate</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
@@ -74,7 +74,7 @@
     <p class="subtitle">Ved Prakash | Latest Certificate</p>
     
     <button class="download-btn" onclick="downloadCertificate()">
-      ⬇️ Download Web-Development.pdf
+      ⬇️ Download Web Development.pdf
     </button>
     
     <p class="size" id="fileSize">Size: Loading...</p>
@@ -84,10 +84,10 @@
     // TERA RESUME KA RAW LINK DAAL DIYA ✅
     const resumeUrl = "https://raw.githubusercontent.com/Vedprakash3/Web-Development.io/refs/heads/main/Web-Development.pdf"; 
     
-    const resumeFileName = "Web-Development.pdf";
+    const Web-DevelopmentFileName = "Web-Development.pdf";
     
     // File size auto fetch
-    fetch(resumeUrl, { method: 'HEAD' }).then(res => {
+    fetch(Web-DevelopmentUrl, { method: 'HEAD' }).then(res => {
       const size = res.headers.get('content-length');
       if(size) {
         document.getElementById('fileSize').innerText = `Size: ${(size/1024/1024).toFixed(2)} MB`;
@@ -98,18 +98,18 @@
       document.getElementById('fileSize').innerText = "Size: Unknown";
     });
 
-    function downloadResume() {
+    function downloadWeb-Development() {
       const link = document.createElement('a');
-      link.href = resumeUrl;
-      link.download = resumeFileName;
+      link.href = Web-DevelopmentUrl;
+      link.download = Web-DevelopmentFileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       // Alert hata diya hai ✅
     }
 
-    function viewResume() {
-      window.open(resumeUrl, '_blank');
+    function viewWeb-Development() {
+      window.open(Web-DevelopmentUrl, '_blank');
     }
   </script>
 </body>
