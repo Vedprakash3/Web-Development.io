@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Resume</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      background: #0f172a; 
+      color: white; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh;
+    }
+   .container { 
+      background: #1e293b; 
+      padding: 2.5rem; 
+      border-radius: 16px; 
+      text-align: center; 
+      max-width: 400px; 
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+   .doc-icon { 
+      width: 100px; 
+      height: 100px; 
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 20px; 
+      margin: 0 auto 1.5rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 3rem;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+   .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+   .download-btn { 
+      background: #3b82f6; 
+      color: white; 
+      padding: 1rem 2rem; 
+      border: none; 
+      border-radius: 10px; 
+      font-size: 1.1rem; 
+      font-weight: bold; 
+      cursor: pointer; 
+      width: 100%;
+      transition: 0.3s;
+    }
+   .download-btn:hover { background: #2563eb; transform: translateY(-2px); }
+   .view-btn { 
+      background: transparent; 
+      color: #3b82f6; 
+      padding: 1rem 2rem; 
+      border: 2px solid #3b82f6; 
+      border-radius: 10px; 
+      font-size: 1rem; 
+      font-weight: bold; 
+      cursor: pointer; 
+      width: 100%;
+      margin-top: 0.8rem;
+      transition: 0.3s;
+    }
+   .view-btn:hover { background: #3b82f6; color: white; }
+   .size { color: #94a3b8; margin-top: 1rem; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="doc-icon">📄</div>
+    <h1>My Certificate</h1>
+    <p class="subtitle">Ved Prakash | Latest Certificate</p>
+    
+    <button class="download-btn" onclick="downloadCertificate()">
+      ⬇️ Download Web Development.pdf
+    </button>
+    
+    <p class="size" id="fileSize">Size: Loading...</p>
+  </div>
+
+  <script>
+    // TERA RESUME KA RAW LINK DAAL DIYA ✅
+    const resumeUrl = "https://raw.githubusercontent.com/Vedprakash3/Web-Development.io/refs/heads/main/Web-Development.pdf"; 
+    
+    const resumeFileName = "Web-Development.pdf";
+    
+    // File size auto fetch
+    fetch(resumeUrl, { method: 'HEAD' }).then(res => {
+      const size = res.headers.get('content-length');
+      if(size) {
+        document.getElementById('fileSize').innerText = `Size: ${(size/1024/1024).toFixed(2)} MB`;
+      } else {
+        document.getElementById('fileSize').innerText = "Size: Unknown";
+      }
+    }).catch(err => {
+      document.getElementById('fileSize').innerText = "Size: Unknown";
+    });
+
+    function downloadResume() {
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.download = resumeFileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      // Alert hata diya hai ✅
+    }
+
+    function viewResume() {
+      window.open(resumeUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
